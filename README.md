@@ -1,6 +1,6 @@
 # Robot Framework Recorder
 
-This Chrome/Chromium extension allows you to record clicks/keyboard entries/… within your browser, and export them as a [Robot Framework](https://robotframework.org/) script (for now we focus on the Browser library, but it can be extended very easily to other libraries, feel free to fill an issue/PR if needed), like:
+This Chrome/Chromium extension allows you to record clicks/keyboard entries/… within your browser, and export them as a [Robot Framework](https://robotframework.org/) script (supporting both the Browser and Selenium libraries, even if Selenium is more experimental), like:
 
 ```
 *** Settings ***
@@ -17,7 +17,9 @@ My first test
     Click  "Login"
 ```
 
-Disclaimer: this library has not been tested extensively. Please report bugs in https://github.com/leo-colisson/robotframework-recorder/issues and feel free to send pull requests. If you like this app and want to see it in the Chrome Store (or just support me), please make a $5 donation in https://github.com/sponsors/tobiasBora 
+**Disclaimer**: this library has not been tested extensively. Please report bugs in https://github.com/leo-colisson/robotframework-recorder/issues and feel free to send pull requests to our repository https://github.com/leo-colisson/robotframework-recorder.
+
+If you like this app and want to support it and its fees (e.g. I needed to pay to add it to the Chrome store), please make a donation at https://github.com/sponsors/tobiasBora 
 
 ## Usage
 
@@ -32,7 +34,8 @@ Disclaimer: this library has not been tested extensively. Please report bugs in 
 9. You can then get the generated script either by clicking `Show Code` at the top right of the recording (to copy/paste), or via the `Export` button (to download a file). You have a list of available exporters, and this library adds (for now) 2 exporters:
    - `RobotFrameworkRecorder (Browser, no aria)`
    - `RobotFrameworkRecorder (Browser, aria as text)`
-   These two exporters target the `Browser` library, the main differences between them is that the `aria as text` variant will try to generate when possible things like `Click  "your text"` instead of `Click  label:nth-of-type(1) > input`. This is of course more readable, but we sadly cannot guarantee here that the selector will always work (though it should fail quite rarely, possibly in specific cases involving in particular multiple selectors having the same text, see "Know issues and workarounds" for details).
+   - `RobotFrameworkRecorder (Selenium)`
+   The first two exporters target the `Browser` library, the main differences between them is that the `aria as text` variant will try to generate when possible things like `Click  "your text"` instead of `Click  label:nth-of-type(1) > input`. This is of course more readable, but we sadly cannot guarantee here that the selector will always work (though it should fail quite rarely, see "Know issues and workarounds" for details). The exporter `RobotFrameworkRecorder (Selenium)` targets the `SeleniumLibrary` library. Since, to the best of our knowledge, it does not support selecting by text, only CSS and XPath selectors are supported.
    
 This script can then simply be called by robot framework, after installing the [`robotframework-browser` library](https://robotframework-browser.org/).
 

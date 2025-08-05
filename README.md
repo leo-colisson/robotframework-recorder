@@ -17,7 +17,7 @@ My first test
     Click  "Login"
 ```
 
-Disclaimer: this library has not been tested extensively. Please report bugs in https://github.com/leo-colisson/robotframework-recorder/issues and feel free to send pull requests.
+Disclaimer: this library has not been tested extensively. Please report bugs in https://github.com/leo-colisson/robotframework-recorder/issues and feel free to send pull requests. If you like this app and want to see it in the Chrome Store (or just support me), please make a $5 donation in https://github.com/sponsors/tobiasBora 
 
 ## Usage
 
@@ -41,7 +41,7 @@ This script can then simply be called by robot framework, after installing the [
 - To have more robust locators (like `[name='password']` instead of `label:nth-of-type(1) > input`), for now you need to set `name` in the "selector attribute" field when starting the recording. This is needed until Chrome fixes [this issue](https://issues.chromium.org/issues/434983804).
 - ARIA support: Due to [this same Chrome issue](https://issues.chromium.org/issues/434983804), we cannot use the ARIA entries to their full power since the name of the role is not recorded by Chromium and Playwright requires the name of the role (see bug reported [here](https://github.com/microsoft/playwright/issues/36858)). If you choose the `aria as text` flavor of the exporter, and encounter a locator like `aria/Login` we will try to convert it to `Text  "Login"`. In my tests it works fairly well, but I can't guarantee that it will always work, hence the other flavor.
 - For now we only support actions (clicks, keyboard inputs…), but no tests since I don't need them. It should however be fairly easy to implement though, so feel free to request/implement it if needed and create a pull request.
-- For now we only support the Browser library. Same remark, it should be fairly easy to implement, I just don't need it for now, so feel free to request/implement it if needed and create a pull request.
+- The Selenium library does not support some key down functions (e.g. media keys) and it is not possible to press a key, do an action, and release it, due to Selenium's API. More generally, Selenium's implementation has been poorly tested since I don't use it.
 
 ## Get involved
 
